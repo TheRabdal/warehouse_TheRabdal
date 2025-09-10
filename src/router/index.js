@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import LoginView from '../views/LoginView.vue';
-import RegisterView from '../views/RegisterView.vue';
-import App from '../App.vue'; // Import App.vue to use its logic for product/user management
+import Login from '../views/Login.vue';
+import Register from '../views/Register.vue';
+import Dashboard from '../views/Dashboard.vue';
 
 const routes = [
   {
@@ -12,17 +12,17 @@ const routes = [
   {
     path: '/login',
     name: 'login',
-    component: LoginView
+    component: Login
   },
   {
     path: '/register',
     name: 'register',
-    component: RegisterView
+    component: Register
   },
   {
     path: '/dashboard',
     name: 'dashboard',
-    component: App, // App.vue will now act as the dashboard/main management view
+    component: Dashboard, // Dashboard.vue will now act as the dashboard/main management view
     meta: { requiresAuth: true } // Protect this route
   }
 ];

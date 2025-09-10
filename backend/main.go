@@ -64,6 +64,9 @@ func main() {
 	r.HandleFunc("/api/products/{sku}", productHandler.UpdateProduct).Methods("PUT")
 	r.HandleFunc("/api/products/{sku}", productHandler.DeleteProduct).Methods("DELETE")
 
+	// Product CSV Export
+	r.HandleFunc("/api/products/export/csv", productHandler.ExportProductsCSV).Methods("GET")
+
 	http.Handle("/", corsMiddleware(r))
 
 	log.Println("Server starting on port 8081...")

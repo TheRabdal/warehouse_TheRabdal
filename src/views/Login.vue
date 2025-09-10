@@ -43,11 +43,15 @@ export default {
           this.$emit('login-success'); // Emit event to parent (App.vue) or handle directly
           this.$router.push('/dashboard'); // Redirect to dashboard
         } else {
-          this.error = 'Login failed. Please check your credentials.';
+          this.error = 'User tidak ditemukan...';
         }
       } catch (err) {
-        this.error = err.response?.data || 'An error occurred during login.';
-        console.error('Login error:', err);
+        if (err.response && (err.response.status === 401 || err.response.status === 400)) {
+          this.error = 'User tidak ditemukan...';
+        } else {
+          this.error = 'Terjadi kesalahan saat login. Silakan coba lagi.'; // Generic error in Indonesian
+          console.error('Login error:', err);
+        }
       }
     }
   }
