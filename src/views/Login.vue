@@ -113,7 +113,7 @@ input[type='password']:focus {
 button[type='submit'] {
   width: 100%;
   padding: 15px;
-  background-color: #007bff;
+  background-color: #42b983;
   color: white;
   border: none;
   border-radius: 8px;

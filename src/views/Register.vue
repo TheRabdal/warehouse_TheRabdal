@@ -113,7 +113,7 @@ input[type='password']:focus {
 button {
   width: 100%;
   padding: 15px; /* More padding */
-  background-color: #007bff; /* Primary blue */
+  background-color: #42b983; /* Primary blue */
   color: white;
   border: none;
   border-radius: 8px; /* More rounded button */
