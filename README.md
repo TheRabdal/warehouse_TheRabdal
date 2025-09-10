@@ -1,106 +1,144 @@
-# Simple Warehouse Management System
+# Sistem Manajemen Gudang
 
-This is a full-stack web application for basic inventory tracking, built as a solution for a technical test case. It features a Vue.js front-end, a Go back-end, and a MySQL database.
+Ini adalah aplikasi web full-stack untuk mengelola produk gudang, menampilkan otentikasi pengguna dan operasi CRUD produk.
 
----
+## Fitur
 
-## Tech Stack
+*   Otentikasi Pengguna (Registrasi, Login)
+*   Manajemen Produk (Tambah, Lihat, Edit, Hapus Produk)
+*   API RESTful dengan Go
+*   Frontend Interaktif dengan Vue.js
 
-*   **Front-end:** Vue.js (v3)
-*   **Back-end:** Go (Golang)
-*   **Database:** MySQL
-*   **API Communication:** RESTful API (JSON)
-*   **Go Dependencies:**
-    *   `gorilla/mux` for routing.
-    *   `go-sql-driver/mysql` for database connection.
-    *   `golang.org/x/crypto/bcrypt` for password hashing.
-*   **Front-end Dependencies:**
-    *   `axios` for API requests.
+## Teknologi yang Digunakan
 
----
+*   **Backend:** Go (Golang)
+*   **Frontend:** Vue.js
+*   **Database:** SQL
 
-## Features
+## Prasyarat
 
-*   **Secure User Authentication:** Login system with hashed passwords stored in the database.
-*   **Product Management (CRUD):**
-    *   **Create:** Add new products to the inventory.
-    *   **Read:** View a list of all products from the database.
-    *   **Update:** Modify the status of existing products.
-    *   **Delete:** Remove products from the inventory.
-*   **RESTful API:** A well-defined API to handle all operations.
+Sebelum memulai, pastikan Anda telah menginstal yang berikut di sistem Anda:
 
----
+*   **Go:** [https://golang.org/doc/install](https://golang.org/doc/install)
+*   **Node.js & npm:** [https://nodejs.org/en/download/](https://nodejs.org/en/download/)
+*   **Database SQL:** Instansi MySQL atau PostgreSQL yang sedang berjalan.
 
-## Prerequisites
+## Instruksi Penyiapan
 
-Before you begin, ensure you have the following installed:
+Ikuti langkah-langkah ini untuk menjalankan proyek di mesin lokal Anda.
 
-*   [Node.js](https://nodejs.org/) (which includes npm)
-*   [Go](https://golang.org/)
-*   [MySQL](https://www.mysql.com/) or MariaDB
+### 1. Kloning Repositori
 
----
+```bash
+git clone https://github.com/your-username/warehouse_TheRabdal.git
+cd warehouse_TheRabdal
+```
 
-## Setup and Installation
+### 2. Penyiapan Backend (Go)
 
-Follow these steps to get the application running on your local machine.
+Navigasi ke direktori `backend`, instal dependensi, dan siapkan database.
 
-**1. Database Setup**
+```bash
+cd backend
+```
 
-*   Make sure your MySQL server is running.
-*   Using a MySQL client (like MySQL Workbench, DBeaver, etc.), run the script located at `backend/init.sql`.
+#### Instal Dependensi Go
+
+```bash
+go mod tidy
+```
+
+#### Penyiapan Database
+
+1.  **Buat Database:**
+    Buat database baru di server SQL Anda (misalnya, `warehouse_db`).
+
+    ```sql
+    CREATE DATABASE warehouse_db;
+    ```
+
+2.  **Impor Skema:**
+    Impor skema SQL yang disediakan ke database yang baru Anda buat.
+
     ```bash
-    # Example using the command line from the 'backend' directory:
-    mysql -u YOUR_USERNAME -p < init.sql
+    # Untuk MySQL:
+    mysql -u nama_pengguna_anda -p warehouse_db < warehouse.sql
+
+    # Untuk PostgreSQL:
+    psql -U nama_pengguna_anda -d warehouse_db -f warehouse.sql
     ```
-*   This will create the `warehouse_db` database and the required `products` and `users` tables.
+    **Catatan:** Anda mungkin perlu menyesuaikan string koneksi database di `main.go` atau file konfigurasi (jika ada) agar sesuai dengan kredensial dan host database Anda.
 
-**2. Back-end Setup**
+#### Jalankan Backend
 
-*   Navigate to the `backend` directory:
-    ```bash
-    cd backend
-    ```
-*   **Important:** Open the `main.go` file and modify the database connection string with your actual MySQL username and password:
-    ```go
-    // Replace "root:admin123" with your credentials
-    db, err = sql.Open("mysql", "YOUR_USERNAME:YOUR_PASSWORD@tcp(127.0.0.1:3306)/warehouse_db")
-    ```
-*   Run the back-end server:
-    ```bash
-    go run main.go
-    ```
-*   The server will start on `http://localhost:8080`.
+```bash
+go run main.go
+```
+Server backend akan dimulai, biasanya di `http://localhost:8080` (atau seperti yang dikonfigurasi di `main.go`).
 
-**3. Front-end Setup**
+### 3. Penyiapan Frontend (Vue.js)
 
-*   In a **new, separate terminal**, navigate to the project's root directory (`warehouse`).
-*   Install the necessary npm packages:
-    ```bash
-    npm install
-    ```
-*   Run the front-end development server:
-    ```bash
-    npm run serve
-    ```
-*   The application will be available at the URL provided (usually `http://localhost:8081`).
+Navigasi kembali ke direktori root proyek dan instal dependensi frontend.
 
-**4. Login**
+```bash
+cd .. # Kembali ke root proyek
+```
 
-*   Open the application in your browser.
-*   Use the following credentials to log in:
-    *   **Username:** `admin`
-    *   **Password:** `admin123`
+#### Instal Dependensi Node.js
 
----
+```bash
+npm install
+```
 
-## API Documentation
+#### Jalankan Frontend
 
-| Method | Endpoint                  | Description                                      |
-|--------|---------------------------|--------------------------------------------------|
-| `POST` | `/api/login`              | Authenticates a user.                            |
-| `GET`  | `/api/products`           | Retrieves a list of all products.                |
-| `POST` | `/api/products`           | Adds a new product to the inventory.             |
-| `PUT`  | `/api/products/{sku}`     | Updates the details of an existing product.      |
-| `DELETE`| `/api/products/{sku}`     | Deletes a product from the inventory.            |"# Warehouse_project" 
-"# warehouse_TheRabdal" 
+```bash
+npm run serve
+```
+Server pengembangan frontend akan dimulai, biasanya di `http://localhost:8081` (atau seperti yang dikonfigurasi di `vue.config.js`).
+
+## Penggunaan
+
+Setelah server backend dan frontend berjalan:
+
+1.  Buka browser web Anda dan navigasi ke URL frontend (misalnya, `http://localhost:8081`).
+2.  Anda dapat mendaftar pengguna baru, masuk, dan kemudian mengelola produk.
+
+## Pemecahan Masalah / Masalah Umum
+
+### 1. Dependensi Hilang
+
+*   **Go:** Jika `go mod tidy` gagal, pastikan Go terinstal dengan benar dan ada di PATH sistem Anda.
+*   **Node.js/npm:** Jika `npm install` gagal, pastikan Node.js dan npm terinstal dengan benar. Coba bersihkan cache npm: `npm cache clean --force`.
+
+### 2. Masalah Koneksi Database
+
+*   **Periksa Kredensial:** Verifikasi bahwa nama pengguna, kata sandi, host, dan nama database di kode backend Anda (`main.go` atau konfigurasi) cocok dengan pengaturan database Anda.
+*   **Server Database Berjalan:** Pastikan server MySQL/PostgreSQL Anda berjalan.
+*   **Firewall:** Periksa apakah ada firewall yang memblokir port database (default MySQL: 3306, PostgreSQL: 5432).
+
+### 3. Konflik Port
+
+*   Jika backend atau frontend gagal dimulai karena port sudah digunakan, Anda dapat:
+    *   Mengubah port di file konfigurasi masing-masing (misalnya, `main.go` untuk Go, `vue.config.js` untuk Vue).
+    *   Temukan dan hentikan proses yang menggunakan port yang berkonflik.
+        *   **Windows:** `netstat -ano | findstr :<NOMOR_PORT>` lalu `taskkill /PID <PID> /F`
+        *   **Linux/macOS:** `lsof -i :<NOMOR_PORT>` lalu `kill -9 <PID>`
+
+### 4. Kesalahan Build Frontend
+
+*   Jika `npm run serve` gagal, periksa pesan kesalahan di konsol. Masalah umum termasuk kesalahan sintaks di komponen Vue atau paket yang hilang. Coba hapus `node_modules` dan `package-lock.json` dan jalankan `npm install` lagi.
+
+### 5. API Backend Tidak Merespons
+
+*   Pastikan server backend (`go run main.go`) berjalan tanpa kesalahan.
+*   Periksa tab jaringan di alat pengembang browser Anda untuk kesalahan permintaan API.
+*   Verifikasi bahwa frontend membuat permintaan ke URL backend yang benar (misalnya, `http://localhost:8080`).
+
+## Kesimpulan
+
+Proyek Sistem Manajemen Gudang ini menyediakan solusi full-stack yang komprehensif untuk mengelola inventaris produk dengan fitur otentikasi pengguna yang kuat. Dengan backend Go yang efisien dan frontend Vue.js yang responsif, aplikasi ini dirancang untuk skalabilitas dan kemudahan penggunaan. Ikuti instruksi di atas untuk penyiapan dan pemecahan masalah guna memastikan pengalaman pengembangan yang lancar.
+
+
+![Tampilan Halaman Dashboard](.tugas/dashboard.png)
+![Tampilan Halaman Register](.tugas/register.png)
