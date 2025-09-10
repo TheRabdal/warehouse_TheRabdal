@@ -29,8 +29,8 @@ Ikuti langkah-langkah ini untuk menjalankan proyek di mesin lokal Anda.
 
 ### 1. Kloning Repositori
 
-```bash
-git clone https://github.com/your-username/warehouse_TheRabdal.git
+```bash 
+git clone https://github.com/TheRabdal/warehouse_TheRabdal.git
 cd warehouse_TheRabdal
 ```
 
@@ -51,10 +51,10 @@ go mod tidy
 #### Penyiapan Database
 
 1.  **Buat Database:**
-    Buat database baru di server SQL Anda (misalnya, `warehouse_db`).
+    Buat database baru di server SQL Anda (misalnya, `warehouse`).
 
     ```sql
-    CREATE DATABASE warehouse_db;
+    CREATE DATABASE warehouse;
     ```
 
 2.  **Impor Skema:**
@@ -62,12 +62,12 @@ go mod tidy
 
     ```bash
     # Untuk MySQL:
-    mysql -u nama_pengguna_anda -p warehouse_db < warehouse.sql
+    mysql -u nama_pengguna_anda -p warehouse < warehouse.sql
 
     # Untuk PostgreSQL:
-    psql -U nama_pengguna_anda -d warehouse_db -f warehouse.sql
+    psql -U nama_pengguna_anda -d warehouse -f warehouse.sql
     ```
-    **Catatan:** Anda mungkin perlu menyesuaikan string koneksi database di `main.go` atau file konfigurasi (jika ada) agar sesuai dengan kredensial dan host database Anda.
+    **Catatan Penting!** Anda perlu menyesuaikan string koneksi database di `main.go` atau file konfigurasi (jika ada) agar sesuai dengan kredensial dan host database Anda.
 
 #### Jalankan Backend
 
@@ -139,6 +139,7 @@ Setelah server backend dan frontend berjalan:
 
 Proyek Sistem Manajemen Gudang ini menyediakan solusi full-stack yang komprehensif untuk mengelola inventaris produk dengan fitur otentikasi pengguna yang kuat. Dengan backend Go yang efisien dan frontend Vue.js yang responsif, aplikasi ini dirancang untuk skalabilitas dan kemudahan penggunaan. Ikuti instruksi di atas untuk penyiapan dan pemecahan masalah guna memastikan pengalaman pengembangan yang lancar.
 
+## Gambar Hasil
 
 ![Tampilan Halaman Dashboard](.tugas/dashboard.png)
 ![Tampilan Halaman Register](.tugas/register.png)
