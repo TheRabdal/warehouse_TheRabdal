@@ -76,13 +76,6 @@ func (h *ProductHandler) ExportProductsCSV(w http.ResponseWriter, r *http.Reques
 	writer := csv.NewWriter(w)
 	defer writer.Flush()
 
-	// Write CSV Header
-	headers := []string{"SKU", "Name", "Quantity", "Location", "Status"}
-	if err := writer.Write(headers); err != nil {
-		http.Error(w, "Failed to write CSV header: "+err.Error(), http.StatusInternalServerError)
-		return
-	}
-
 	products, err := h.productService.GetProducts("") // Get all products
 	if err != nil {
 		http.Error(w, "Failed to fetch products for CSV export: "+err.Error(), http.StatusInternalServerError)
