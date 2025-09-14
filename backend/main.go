@@ -30,7 +30,7 @@ func corsMiddleware(next http.Handler) http.Handler {
 
 func main() {
 	var err error
-	db, err = sql.Open("mysql", "admin:admin123@tcp(127.0.0.1:3306)/warehouse")
+	db, err = sql.Open("mysql", "admin:admin@tcp(127.0.0.1:3306)/warehouse")
 	if err != nil {
 		log.Fatal(err)
 	}
